@@ -1,0 +1,85 @@
+<!-- views.xml -->
+
+<odoo>
+    <data>
+        <!-- Vista del JSON -->
+        <record id="view_json_import_form" model="ir.ui.view">
+            <field name="name">json.import.form</field>
+            <field name="model">json.import</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="json_file" filename="Importe su JSON"/>
+                    </group>
+                    <footer>
+                        <button string="Importar" type="object" class="btn-primary" name="import_data"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción para abrir el Wizard -->
+        <record id="action_json_import" model="ir.actions.act_window">
+            <field name="name">Importar JSON</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">json.import</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_json_import_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!-- Top Menu -->
+        <menuitem id="json_import_menu" name="Importar JSON" action="action_json_import" sequence="10"/>
+
+
+
+
+
+
+              <!-- Vista de Registros -->
+        <record id="view_registro_tree" model="ir.ui.view">
+            <field name="name">registro.tree</field>
+            <field name="model">registro</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="edad"/>
+                    <field name="sexo"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de formulario de Registros -->
+        <record id="view_registro_form" model="ir.ui.view">
+            <field name="name">registro.form</field>
+            <field name="model">registro</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="nombre"/>
+                        <field name="edad"/>
+                        <field name="sexo"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Acción de ventana para la vista de lista -->
+        <record id="action_registro" model="ir.actions.act_window">
+            <field name="name">Registros</field>
+            <field name="res_model">registro</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">No hay registros para mostrar.</p>
+            </field>
+        </record>
+
+        <!-- Menú para acceder a la lista de registros -->
+        <menuitem id="menu_registro" name="Registros" parent="json_import_menu" action="action_registro"/>
+
+
+
+
+    </data>
+</odoo>
